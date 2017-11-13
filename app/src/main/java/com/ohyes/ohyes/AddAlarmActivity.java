@@ -64,6 +64,9 @@ public class AddAlarmActivity extends AppCompatActivity implements AdapterView.O
         }
         ArrayList<String> list = new ArrayList<>();
         list.add("Aspirin");
+        list.add("chlorpheniramine");
+        list.add("carbocisteine");
+        list.add("NSAID");
         globalVariable.setMedlist(list);
 
 
@@ -149,18 +152,14 @@ public class AddAlarmActivity extends AppCompatActivity implements AdapterView.O
 
                 sendBroadcast(intent);
 
-                setContentView(R.layout.activity_add_alarm);
+                //setContentView(R.layout.activity_add_alarm);
 
-
-
-                ArrayList<String> list = new ArrayList<>();
-                list = globalVariable.getMedlist();
-                list.add("item 1");
-                globalVariable.setMedlist(list);
-                // add this one into array item
-                // globalvariable
-
-                ArrayAdapter<String> adapter2 = new ArrayAdapter<String> (AddAlarmActivity.this, android.R.layout.simple_spinner_dropdown_item, list);
+                ArrayList<String> list2 = new ArrayList<>();
+                list2 = globalVariable.getMedlist();
+                list2.add("item 1");
+                Log.e("Add", "add item 1" + list2.toString());
+                globalVariable.setMedlist(list2);
+                ArrayAdapter<String> adapter2 = new ArrayAdapter<String> (AddAlarmActivity.this, android.R.layout.simple_spinner_dropdown_item, globalVariable.getMedlist());
                 spinnerset.setAdapter(adapter2);
 
             }
