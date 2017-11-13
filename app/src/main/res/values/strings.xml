@@ -2,14 +2,4 @@
     <string name="app_name">OhYes</string>
     <string name="action_setting">Settings</string>
 
-    <string-array name="med_array">
-        <item>Aspirin</item> //para
-        <item>chlorpheniramine</item> //แก้แพ้
-        <item>carbocisteine</item> //ไอเสมหะ
-        <item>NSAID </item>  //อักเสบ
-
-
-
-    </string-array>
-
 </resources>

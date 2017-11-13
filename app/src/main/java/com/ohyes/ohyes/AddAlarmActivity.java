@@ -1,13 +1,11 @@
 package com.ohyes.ohyes;
 
-import android.annotation.TargetApi;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,7 +29,8 @@ public class AddAlarmActivity extends AppCompatActivity implements AdapterView.O
     TextView alarmStatus;
     Context context;
     PendingIntent pendingIntent;
-    Spinner spinnerset;
+    Spinner spinnerSet;
+    Spinner spinnerQuantity;
 
 
     @Override
@@ -54,7 +53,9 @@ public class AddAlarmActivity extends AppCompatActivity implements AdapterView.O
         final Intent intent = new Intent(AddAlarmActivity.this, AlarmReceiver.class);
         final String text1 = globalVariable.getAlarmStatus();
 
-        spinnerset = (Spinner) findViewById(R.id.medPick);
+        spinnerSet = (Spinner) findViewById(R.id.medPick);
+        spinnerQuantity = (Spinner) findViewById(R.id.medQuantity);
+
 
         Log.e("asasdasd", ""+Calendar.MINUTE);
         if(text1==null || text1.equals("Alarm off")){
@@ -62,16 +63,34 @@ public class AddAlarmActivity extends AppCompatActivity implements AdapterView.O
         }else {
             alarmStatus.setText(globalVariable.getAlarmStatus());
         }
-        ArrayList<String> list = new ArrayList<>();
-        list.add("Aspirin");
-        list.add("chlorpheniramine");
-        list.add("carbocisteine");
-        list.add("NSAID");
-        globalVariable.setMedlist(list);
+
+        // set drop down menu for medicine name
+        if(globalVariable.medlist == null){
+            ArrayList<String> list = new ArrayList<>();
+            list.add("Aspirin");
+            list.add("chlorpheniramine");
+            list.add("carbocisteine");
+            list.add("NSAID");
+            globalVariable.setMedlist(list);
+        } else{
+            ArrayList<String> list = new ArrayList<>();
+            list = globalVariable.getMedlist();
+        }
+
+
+        ArrayList<String> list2 = new ArrayList<>();
+        list2.add("1");
+        list2.add("2");
+        list2.add("3");
+        list2.add("4");
+        list2.add("5");
+
 
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String> (AddAlarmActivity.this, android.R.layout.simple_spinner_dropdown_item, globalVariable.getMedlist());
-        spinnerset.setAdapter(adapter);
+        spinnerSet.setAdapter(adapter);
+        adapter = new ArrayAdapter<String> (AddAlarmActivity.this, android.R.layout.simple_spinner_dropdown_item, list2);
+        spinnerQuantity.setAdapter(adapter);
 
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigation);
@@ -160,7 +179,7 @@ public class AddAlarmActivity extends AppCompatActivity implements AdapterView.O
                 Log.e("Add", "add item 1" + list2.toString());
                 globalVariable.setMedlist(list2);
                 ArrayAdapter<String> adapter2 = new ArrayAdapter<String> (AddAlarmActivity.this, android.R.layout.simple_spinner_dropdown_item, globalVariable.getMedlist());
-                spinnerset.setAdapter(adapter2);
+                spinnerSet.setAdapter(adapter2);
 
             }
         });
