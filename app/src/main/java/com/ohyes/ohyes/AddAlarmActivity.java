@@ -31,6 +31,7 @@ public class AddAlarmActivity extends AppCompatActivity implements AdapterView.O
     PendingIntent pendingIntent;
     Spinner spinnerSet;
     Spinner spinnerQuantity;
+    long pickMedDrop;
 
 
     @Override
@@ -43,7 +44,8 @@ public class AddAlarmActivity extends AppCompatActivity implements AdapterView.O
         alarmTimePicker = (TimePicker) findViewById(R.id.timePicker);
         alarmStatus = (TextView) findViewById(R.id.tvAlarmStatus);
 
-        final Calendar calendar = Calendar.getInstance();
+        final Calendar wakeUpCall = Calendar.getInstance();
+        final Calendar now = Calendar.getInstance();
 
         Button startAlarm = (Button) findViewById(R.id.bStartAlarm);
         Button stopAlarm = (Button) findViewById(R.id.bStopAlarm);
@@ -57,7 +59,7 @@ public class AddAlarmActivity extends AppCompatActivity implements AdapterView.O
         spinnerQuantity = (Spinner) findViewById(R.id.medQuantity);
 
 
-        Log.e("asasdasd", ""+Calendar.MINUTE);
+
         if(text1==null || text1.equals("Alarm off")){
             alarmStatus.setText("Alarm off");
         }else {
@@ -118,19 +120,29 @@ public class AddAlarmActivity extends AppCompatActivity implements AdapterView.O
 
                 int hour = 0;
                 int minute = 0;
+
+                wakeUpCall.setTimeInMillis(System.currentTimeMillis());
+
                 if(Build.VERSION.SDK_INT < 23){
                     hour = alarmTimePicker.getCurrentHour();
                     minute = alarmTimePicker.getCurrentMinute();
-                    calendar.set(Calendar.HOUR_OF_DAY, alarmTimePicker.getCurrentHour());
-                    calendar.set(Calendar.MINUTE, alarmTimePicker.getCurrentMinute());
-                    calendar.set(Calendar.SECOND, 0);
+                    wakeUpCall.set(Calendar.HOUR_OF_DAY, alarmTimePicker.getCurrentHour());
+                    wakeUpCall.set(Calendar.MINUTE, alarmTimePicker.getCurrentMinute());
+                    wakeUpCall.set(Calendar.SECOND, 0);
 
                 } else{
                     hour = alarmTimePicker.getHour();
                     minute = alarmTimePicker.getMinute();
-                    calendar.set(Calendar.HOUR_OF_DAY, alarmTimePicker.getHour());
-                    calendar.set(Calendar.MINUTE, alarmTimePicker.getMinute());
-                    calendar.set(Calendar.SECOND, 0);
+                    wakeUpCall.set(Calendar.HOUR_OF_DAY, alarmTimePicker.getHour());
+                    wakeUpCall.set(Calendar.MINUTE, alarmTimePicker.getMinute());
+                    wakeUpCall.set(Calendar.SECOND, 0);
+                }
+
+                if (wakeUpCall.getTimeInMillis() <= now.getTimeInMillis()) {
+                    wakeUpCall.setTimeInMillis(wakeUpCall.getTimeInMillis() + (AlarmManager.INTERVAL_DAY + 1));
+                }
+                else {
+                    wakeUpCall.setTimeInMillis(wakeUpCall.getTimeInMillis());
                 }
 
                 globalVariable.setTimeHour(String.valueOf(hour));
@@ -151,8 +163,22 @@ public class AddAlarmActivity extends AppCompatActivity implements AdapterView.O
 
                 intent.putExtra("extra", "alarm on");
 
+                String medName = spinnerSet.getSelectedItem().toString();
+                String medQuan = spinnerQuantity.getSelectedItem().toString();
+                globalVariable.setMedName(medName);
+                globalVariable.setMedQuan(medQuan);
+
                 pendingIntent = PendingIntent.getBroadcast(AddAlarmActivity.this, 0, intent, pendingIntent.FLAG_UPDATE_CURRENT);
-                alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+                    alarmManager.set(AlarmManager.RTC_WAKEUP, wakeUpCall.getTimeInMillis(), pendingIntent);
+                }
+                else if (Build.VERSION_CODES.KITKAT <= Build.VERSION.SDK_INT  && Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+                    alarmManager.setExact(AlarmManager.RTC_WAKEUP, wakeUpCall.getTimeInMillis(), pendingIntent);
+                }
+                else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, wakeUpCall.getTimeInMillis(), pendingIntent);
+                }
 
 
 
@@ -171,15 +197,8 @@ public class AddAlarmActivity extends AppCompatActivity implements AdapterView.O
 
                 sendBroadcast(intent);
 
-                //setContentView(R.layout.activity_add_alarm);
 
-                ArrayList<String> list2 = new ArrayList<>();
-                list2 = globalVariable.getMedlist();
-                list2.add("item 1");
-                Log.e("Add", "add item 1" + list2.toString());
-                globalVariable.setMedlist(list2);
-                ArrayAdapter<String> adapter2 = new ArrayAdapter<String> (AddAlarmActivity.this, android.R.layout.simple_spinner_dropdown_item, globalVariable.getMedlist());
-                spinnerSet.setAdapter(adapter2);
+                //setContentView(R.layout.activity_add_alarm);
 
             }
         });
@@ -190,6 +209,9 @@ public class AddAlarmActivity extends AppCompatActivity implements AdapterView.O
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         // An item was selected. You can retrieve the selected item using
         // parent.getItemAtPosition(pos)
+
+        pickMedDrop = id;
+
     }
 
     @Override

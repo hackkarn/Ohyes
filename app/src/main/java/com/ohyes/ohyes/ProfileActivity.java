@@ -25,6 +25,7 @@ public class ProfileActivity extends AppCompatActivity {
         final TextView hour = (TextView) findViewById(R.id.tvHour);
         final TextView min = (TextView) findViewById(R.id.tvMin);
         final TextView nameMed = (TextView) findViewById(R.id.tvNameMed);
+        final TextView medQuantity = (TextView) findViewById(R.id.textView2_1);
 
         final GlobalClass globalVariable = (GlobalClass) getApplicationContext();
         if (globalVariable.alarmStatus==null || globalVariable.alarmStatus.equals("Alarm off")){
@@ -35,6 +36,8 @@ public class ProfileActivity extends AppCompatActivity {
         else {
             hour.setText(globalVariable.getTimeHour());
             min.setText(globalVariable.getTimeMin());
+            nameMed.setText(globalVariable.getMedName());
+            medQuantity.setText(globalVariable.getMedQuan());
         }
 
 

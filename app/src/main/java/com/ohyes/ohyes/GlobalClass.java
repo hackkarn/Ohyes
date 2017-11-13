@@ -17,6 +17,8 @@ public class GlobalClass extends Application{
     public String alarmStatus;
     public int count;
     public ArrayList<String> medlist;
+    public String medName;
+    public String medQuan;
 
     public String getTimeHour(){
         return timeHour;
@@ -73,4 +75,21 @@ public class GlobalClass extends Application{
     public void setMedlist(ArrayList medlist){
         this.medlist = medlist;
     }
+
+    public String getMedName(){
+        return medName;
+    }
+
+    public void setMedName(String medName){
+        this.medName = medName;
+    }
+
+    public String getMedQuan(){
+        return medQuan;
+    }
+
+    public void setMedQuan(String medQuan){
+        this.medQuan = medQuan;
+    }
+
 }
