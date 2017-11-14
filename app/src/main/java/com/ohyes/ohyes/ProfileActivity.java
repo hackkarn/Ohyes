@@ -7,9 +7,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -22,22 +26,28 @@ public class ProfileActivity extends AppCompatActivity {
         final EditText etPUsername = (EditText) findViewById(R.id.etPUsername);
         final Button bLogout = (Button) findViewById(R.id.bLogout);
 
-        final TextView hour = (TextView) findViewById(R.id.tvHour);
-        final TextView min = (TextView) findViewById(R.id.tvMin);
-        final TextView nameMed = (TextView) findViewById(R.id.tvNameMed);
-        final TextView medQuantity = (TextView) findViewById(R.id.textView2_1);
 
         final GlobalClass globalVariable = (GlobalClass) getApplicationContext();
         if (globalVariable.alarmStatus==null || globalVariable.alarmStatus.equals("Alarm off")){
-            hour.setText("");
-            min.setText("");
 
         }
         else {
-            hour.setText(globalVariable.getTimeHour());
-            min.setText(globalVariable.getTimeMin());
-            nameMed.setText(globalVariable.getMedName());
-            medQuantity.setText(globalVariable.getMedQuan());
+            //hour.setText(globalVariable.getTimeHour());
+            //min.setText(globalVariable.getTimeMin());
+            //nameMed.setText(globalVariable.getMedName());
+            //medQuantity.setText(globalVariable.getMedQuan());
+            String hour = globalVariable.getTimeHour();
+            String min = globalVariable.getTimeMin();
+            String nameMed = globalVariable.getMedName();
+            String medQuantity = globalVariable.getMedQuan();
+
+
+            TextView myText = new TextView(ProfileActivity.this);
+            myText.setText(hour+":"+min+" " + nameMed + " " + medQuantity + " pill");
+            LinearLayout ll = (LinearLayout)findViewById(R.id.viewLayout);
+            ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            ll.addView(myText, lp);
+
         }
 
 

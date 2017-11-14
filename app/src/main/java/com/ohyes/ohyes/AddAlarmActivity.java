@@ -210,7 +210,6 @@ public class AddAlarmActivity extends AppCompatActivity implements AdapterView.O
         // An item was selected. You can retrieve the selected item using
         // parent.getItemAtPosition(pos)
 
-        pickMedDrop = id;
 
     }
 

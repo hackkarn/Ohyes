@@ -27,7 +27,10 @@
             android:label="Profile" />
         <activity
             android:name=".HomeActivity"
-            android:label="Home"></activity>
+            android:label="Home">
+
+
+        </activity>
         <activity android:name=".AddAlarmActivity">
 
         </activity>
