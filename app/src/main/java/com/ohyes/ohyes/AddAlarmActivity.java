@@ -145,20 +145,20 @@ public class AddAlarmActivity extends AppCompatActivity implements AdapterView.O
                     wakeUpCall.setTimeInMillis(wakeUpCall.getTimeInMillis());
                 }
 
-                globalVariable.setTimeHour(String.valueOf(hour));
-                globalVariable.setTimeMin(String.valueOf(minute));
-                String hourString= String.valueOf(hour);
-                String minuteString = String.valueOf(minute);
-
-                if (hour>12){
-                    hourString = String.valueOf(hour-12);
+                //Set time to globalClass and add zero if less than 10
+                if(hour < 10){
+                    globalVariable.setTimeHour("0" + String.valueOf(hour));
+                } else {
+                    globalVariable.setTimeHour(String.valueOf(hour));
                 }
 
-                if (minute<10){
-                    minuteString = "0" + String.valueOf(minute);
+                if(minute < 10){
+                    globalVariable.setTimeMin("0" + String.valueOf(minute));
+                } else {
+                    globalVariable.setTimeMin(String.valueOf(minute));
                 }
 
-                globalVariable.setAlarmStatus("Alarm set to: " + hourString + ":" + minuteString);
+                globalVariable.setAlarmStatus("Alarm set to: " + globalVariable.getTimeHour() + ":" + globalVariable.getTimeMin());
                 alarmStatus.setText(globalVariable.getAlarmStatus());
 
                 intent.putExtra("extra", "alarm on");

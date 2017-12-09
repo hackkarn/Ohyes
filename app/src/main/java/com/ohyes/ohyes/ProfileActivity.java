@@ -29,7 +29,11 @@ public class ProfileActivity extends AppCompatActivity {
 
         final GlobalClass globalVariable = (GlobalClass) getApplicationContext();
         if (globalVariable.alarmStatus==null || globalVariable.alarmStatus.equals("Alarm off")){
-
+            TextView myText = new TextView(ProfileActivity.this);
+            myText.setText("Alarm is not set");
+            LinearLayout ll = (LinearLayout)findViewById(R.id.viewLayout);
+            ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            ll.addView(myText, lp);
         }
         else {
             //hour.setText(globalVariable.getTimeHour());
