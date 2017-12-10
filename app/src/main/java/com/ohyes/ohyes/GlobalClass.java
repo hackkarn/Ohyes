@@ -19,6 +19,9 @@ public class GlobalClass extends Application{
     public String medName;
     public String medQuan;
     public int songId;
+    public int selectCode;
+    public int countCode;
+    public ArrayList<String> codeList;
 
     public String getTimeHour(){
         return timeHour;
@@ -98,6 +101,30 @@ public class GlobalClass extends Application{
 
     public void setSongId(int songId){
         this.songId = songId;
+    }
+
+    public int getSelectCode(){
+        return selectCode;
+    }
+
+    public void setSelectCode(int selectCode){
+        this.selectCode = selectCode;
+    }
+
+    public int getCountCode(){
+        return countCode;
+    }
+
+    public void setCountCode(int countCode){
+        this.countCode = countCode;
+    }
+
+    public ArrayList<String> getCodeList(){
+        return codeList;
+    }
+
+    public void setCodeList(ArrayList codeList){
+        this.codeList = codeList;
     }
 
 }

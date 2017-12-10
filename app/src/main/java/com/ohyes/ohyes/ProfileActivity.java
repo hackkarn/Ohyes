@@ -30,15 +30,15 @@ public class ProfileActivity extends AppCompatActivity {
         final EditText etPUsername = (EditText) findViewById(R.id.etPUsername);
         final Button bLogout = (Button) findViewById(R.id.bLogout);
 
-        TextView cardText = (TextView) findViewById(R.id.cardText);
-        ImageView cardImage = (ImageView) findViewById(R.id.cardImage);
-
+        TextView cardText1 = (TextView) findViewById(R.id.cardText1);
+        ImageView cardImage1 = (ImageView) findViewById(R.id.cardImage1);
 
         final GlobalClass globalVariable = (GlobalClass) getApplicationContext();
+
         if (globalVariable.alarmStatus==null || globalVariable.alarmStatus.equals("Alarm off")){
-            cardText.setText("Alarm is not set");
+            cardText1.setText("Alarm is not set");
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                cardImage.setImageDrawable(getDrawable(R.drawable.clockicon));
+                cardImage1.setImageDrawable(getDrawable(R.drawable.clockicon));
             }
 
 
@@ -53,9 +53,9 @@ public class ProfileActivity extends AppCompatActivity {
             String nameMed = globalVariable.getMedName();
             String medQuantity = globalVariable.getMedQuan();
 
-            cardText.setText(hour+":"+min+" take " + nameMed + " for " + medQuantity + " pill");
+            cardText1.setText(hour+":"+min+" take " + nameMed + " for " + medQuantity + " pill");
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                cardImage.setImageDrawable(getDrawable(R.drawable.clockicon));
+                cardImage1.setImageDrawable(getDrawable(R.drawable.clockicon));
             }
 
         }

@@ -21,6 +21,7 @@ public class RingtonePlayingService extends Service {
     int start_id;
     boolean isRunnning;
     Notification notiPopup;
+    GlobalClass globalVariable;
 
     @Nullable
     @Override
@@ -37,7 +38,8 @@ public class RingtonePlayingService extends Service {
 
         NotificationManager notifyManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         Intent intentAddAlarmActivity = new Intent(this.getApplicationContext(), AddAlarmActivity.class);
-        PendingIntent pendingIntentAddAlarm = PendingIntent.getActivity(this, 0, intentAddAlarmActivity, 0);
+        globalVariable = (GlobalClass) getApplicationContext();
+        PendingIntent pendingIntentAddAlarm = PendingIntent.getActivity(this, globalVariable.getSelectCode(), intentAddAlarmActivity, 0);
 
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
@@ -74,7 +76,6 @@ public class RingtonePlayingService extends Service {
         if (!this.isRunnning && startId == 1){
 
             Log.e("there is no music", "and you want start");
-            final GlobalClass globalVariable = (GlobalClass) getApplicationContext();
             if(globalVariable.getSongId()==2){
                 mediaSong = MediaPlayer.create(this, R.raw.bluesy);
             } else if(globalVariable.getSongId()==3){
