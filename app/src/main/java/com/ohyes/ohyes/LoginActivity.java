@@ -31,28 +31,7 @@ public class LoginActivity extends AppCompatActivity {
         final EditText etPassword = (EditText) findViewById(R.id.etLPassword);
         final Button bLogin = (Button) findViewById(R.id.bLogIn);
         final TextView registerLink = (TextView) findViewById(R.id.tvRegisterH);
-        final Button bLogin2 = (Button) findViewById(R.id.btnAddArm);
         final GlobalClass globalVariable = (GlobalClass) getApplicationContext();
-
-        rootView = (ViewGroup) findViewById(R.id.buttonContainer);
-
-        bLogin2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Button button = new Button(LoginActivity.this); // Need to provide the context, the Activity
-                button.setText("Added");
-
-                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                params.addRule(RelativeLayout.CENTER_HORIZONTAL);
-                params.addRule(RelativeLayout.BELOW, globalVariable.getCount()*10);
-
-                globalVariable.setCount(globalVariable.getCount()+1);
-                Log.e("Count num", ""+globalVariable.getCount());
-
-                rootView.addView(button, params);
-            }
-        });
 
         registerLink.setOnClickListener(new View.OnClickListener(){
             @Override
