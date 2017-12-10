@@ -1,15 +1,19 @@
 package com.ohyes.ohyes;
 
 import android.content.Intent;
+import android.os.Build;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -26,14 +30,18 @@ public class ProfileActivity extends AppCompatActivity {
         final EditText etPUsername = (EditText) findViewById(R.id.etPUsername);
         final Button bLogout = (Button) findViewById(R.id.bLogout);
 
+        TextView cardText = (TextView) findViewById(R.id.cardText);
+        ImageView cardImage = (ImageView) findViewById(R.id.cardImage);
+
 
         final GlobalClass globalVariable = (GlobalClass) getApplicationContext();
         if (globalVariable.alarmStatus==null || globalVariable.alarmStatus.equals("Alarm off")){
-            TextView myText = new TextView(ProfileActivity.this);
-            myText.setText("Alarm is not set");
-            LinearLayout ll = (LinearLayout)findViewById(R.id.viewLayout);
-            ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            ll.addView(myText, lp);
+            cardText.setText("Alarm is not set");
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                cardImage.setImageDrawable(getDrawable(R.drawable.clockicon));
+            }
+
+
         }
         else {
             //hour.setText(globalVariable.getTimeHour());
@@ -45,12 +53,10 @@ public class ProfileActivity extends AppCompatActivity {
             String nameMed = globalVariable.getMedName();
             String medQuantity = globalVariable.getMedQuan();
 
-
-            TextView myText = new TextView(ProfileActivity.this);
-            myText.setText(hour+":"+min+" " + nameMed + " " + medQuantity + " pill");
-            LinearLayout ll = (LinearLayout)findViewById(R.id.viewLayout);
-            ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            ll.addView(myText, lp);
+            cardText.setText(hour+":"+min+" take " + nameMed + " for " + medQuantity + " pill");
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                cardImage.setImageDrawable(getDrawable(R.drawable.clockicon));
+            }
 
         }
 
