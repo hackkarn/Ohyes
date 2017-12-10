@@ -36,7 +36,8 @@
             android:name=".RingtonePlayingService"
             android:enabled="true" />
 
-        <activity android:name=".SettingActivity" />
+        <activity android:name=".SettingActivity"
+                android:label="Setting"/>
         <activity
             android:name=".Test"
             android:label="@string/title_activity_test"
