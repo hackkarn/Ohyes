@@ -74,7 +74,14 @@ public class RingtonePlayingService extends Service {
         if (!this.isRunnning && startId == 1){
 
             Log.e("there is no music", "and you want start");
-            mediaSong = MediaPlayer.create(this, R.raw.bluesy);
+            final GlobalClass globalVariable = (GlobalClass) getApplicationContext();
+            if(globalVariable.getSongId()==2){
+                mediaSong = MediaPlayer.create(this, R.raw.bluesy);
+            } else if(globalVariable.getSongId()==3){
+                mediaSong = MediaPlayer.create(this, R.raw.dixie);
+            } else{
+                mediaSong = MediaPlayer.create(this, R.raw.animal);
+            }
             mediaSong.setLooping(true);
             mediaSong.start();
             this.isRunnning =true;

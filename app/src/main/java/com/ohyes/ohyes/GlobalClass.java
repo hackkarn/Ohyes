@@ -1,7 +1,6 @@
 package com.ohyes.ohyes;
 
 import android.app.Application;
-
 import java.util.ArrayList;
 
 /**
@@ -19,6 +18,7 @@ public class GlobalClass extends Application{
     public ArrayList<String> medlist;
     public String medName;
     public String medQuan;
+    public int songId;
 
     public String getTimeHour(){
         return timeHour;
@@ -90,6 +90,14 @@ public class GlobalClass extends Application{
 
     public void setMedQuan(String medQuan){
         this.medQuan = medQuan;
+    }
+
+    public int getSongId(){
+        return songId;
+    }
+
+    public void setSongId(int songId){
+        this.songId = songId;
     }
 
 }
