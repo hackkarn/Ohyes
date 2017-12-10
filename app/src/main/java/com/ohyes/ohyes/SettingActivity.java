@@ -66,13 +66,13 @@ public class SettingActivity extends AppCompatActivity {
         bTestBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(sChoose.getSelectedItem().toString().equals("1")){
+                if(sChoose.getSelectedItem().toString().equals("1 Rock Style")){
                     MediaPlayer mediaSong = MediaPlayer.create(getApplicationContext(), R.raw.animal);
                     mediaSong.start();
-                } else if(sChoose.getSelectedItem().toString().equals("2")){
+                } else if(sChoose.getSelectedItem().toString().equals("2 Normal Style")){
                     MediaPlayer mediaSong = MediaPlayer.create(getApplicationContext(), R.raw.bluesy);
                     mediaSong.start();
-                } else if(sChoose.getSelectedItem().toString().equals("3")){
+                } else if(sChoose.getSelectedItem().toString().equals("3 Country Style")){
                     MediaPlayer mediaSong = MediaPlayer.create(getApplicationContext(), R.raw.dixie);
                     mediaSong.start();
                 }
@@ -83,11 +83,11 @@ public class SettingActivity extends AppCompatActivity {
         bChoose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(sChoose.getSelectedItem().toString().equals("1")){
+                if(sChoose.getSelectedItem().toString().equals("1 Rock Style")){
                     globalVariable.setSongId(1);
-                } else if(sChoose.getSelectedItem().toString().equals("2")){
+                } else if(sChoose.getSelectedItem().toString().equals("2 Normal Style")){
                     globalVariable.setSongId(2);
-                } else if(sChoose.getSelectedItem().toString().equals("3")){
+                } else if(sChoose.getSelectedItem().toString().equals("3 Country Style")){
                     globalVariable.setSongId(3);
                 }
                 AlertDialog.Builder builder = new AlertDialog.Builder(SettingActivity.this);
