@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">OhYes</string>
     <string name="action_setting">Settings</string>
+    <string name="title_activity_test">Test</string>
 
 </resources>

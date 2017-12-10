@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name = ".GlobalClass"
+        android:name=".GlobalClass"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="Login"
@@ -27,21 +27,20 @@
             android:label="Profile" />
         <activity
             android:name=".HomeActivity"
-            android:label="Home">
-
-
-        </activity>
-        <activity android:name=".AddAlarmActivity">
-
-        </activity>
+            android:label="Home"></activity>
+        <activity android:name=".AddAlarmActivity"></activity>
 
         <receiver android:name=".AlarmReceiver" />
 
         <service
             android:name=".RingtonePlayingService"
-            android:enabled="true"></service>
+            android:enabled="true" />
 
-        <activity android:name=".SettingActivity"></activity>
+        <activity android:name=".SettingActivity" />
+        <activity
+            android:name=".Test"
+            android:label="@string/title_activity_test"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>
