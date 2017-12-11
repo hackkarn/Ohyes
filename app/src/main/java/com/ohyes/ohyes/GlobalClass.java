@@ -9,11 +9,11 @@ import java.util.ArrayList;
 
 public class GlobalClass extends Application{
 
-    public String timeHour;
-    public String timeMin;
+    public ArrayList<String> timeHour;
+    public ArrayList<String> timeMin;
     public String username;
     public String userid;
-    public String alarmStatus;
+    public ArrayList<String> alarmStatus;
     public int count;
     public ArrayList<String> medlist;
     public String medName;
@@ -21,21 +21,21 @@ public class GlobalClass extends Application{
     public int songId;
     public int selectCode;
     public int countCode;
-    public ArrayList<String> codeList;
+    public ArrayList<String> codeList; //alarm number in addalarm page
 
-    public String getTimeHour(){
+    public ArrayList<String> getTimeHour(){
         return timeHour;
     }
 
-    public void setTimeHour(String timeHour){
+    public void setTimeHour(ArrayList<String> timeHour){
         this.timeHour = timeHour;
     }
 
-    public String getTimeMin(){
+    public ArrayList<String> getTimeMin(){
         return timeMin;
     }
 
-    public void setTimeMin(String timeMin){
+    public void setTimeMin(ArrayList<String> timeMin){
         this.timeMin = timeMin;
     }
 
@@ -55,11 +55,11 @@ public class GlobalClass extends Application{
         this.userid = userid;
     }
 
-    public String getAlarmStatus(){
+    public ArrayList<String> getAlarmStatus(){
         return alarmStatus;
     }
 
-    public void setAlarmStatus(String alarmStatus){
+    public void setAlarmStatus(ArrayList<String> alarmStatus){
         this.alarmStatus = alarmStatus;
     }
 

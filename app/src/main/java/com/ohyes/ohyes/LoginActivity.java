@@ -19,6 +19,8 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 public class LoginActivity extends AppCompatActivity {
     private ViewGroup rootView;
 
@@ -47,6 +49,16 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final String username = etUsername.getText().toString();
                 final String password = etPassword.getText().toString();
+                ArrayList<String> globalList = new ArrayList<>();
+                ArrayList<String> globalList2 = new ArrayList<>();
+                globalList.add(0, "Alarm off");
+                globalVariable.setAlarmStatus(globalList);
+                globalList= new ArrayList<>();
+                globalList.add(0, "0");
+                globalVariable.setTimeHour(globalList);
+                globalList2= new ArrayList<>();
+                globalList2.add(0, "0");
+                globalVariable.setTimeMin(globalList2);
 
                 if (username.equals("") && password.equals("")){
                     globalVariable.setUsername("adminTest");

@@ -8,6 +8,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +36,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         final GlobalClass globalVariable = (GlobalClass) getApplicationContext();
 
-        if (globalVariable.alarmStatus==null || globalVariable.alarmStatus.equals("Alarm off")){
+        if (globalVariable.alarmStatus.get(globalVariable.getSelectCode()).equals("0") || globalVariable.alarmStatus.get(globalVariable.getSelectCode()).equals("Alarm off")){
             cardText1.setText("Alarm is not set");
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 cardImage1.setImageDrawable(getDrawable(R.drawable.clockicon));
@@ -48,8 +49,8 @@ public class ProfileActivity extends AppCompatActivity {
             //min.setText(globalVariable.getTimeMin());
             //nameMed.setText(globalVariable.getMedName());
             //medQuantity.setText(globalVariable.getMedQuan());
-            String hour = globalVariable.getTimeHour();
-            String min = globalVariable.getTimeMin();
+            String hour = globalVariable.getTimeHour().get(globalVariable.getSelectCode());
+            String min = globalVariable.getTimeMin().get(globalVariable.getSelectCode());
             String nameMed = globalVariable.getMedName();
             String medQuantity = globalVariable.getMedQuan();
 
