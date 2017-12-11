@@ -145,7 +145,7 @@ public class AddAlarmActivity extends AppCompatActivity implements AdapterView.O
                     list4.add("Add More Alarm");
                 }else{
                     int selectNum = Integer.parseInt(spinnerSelectCode.getSelectedItem().toString());
-                    globalVariable.setSelectCode(selectNum);
+                    globalVariable.setSelectCode(selectNum-1);
                 }
                 wakeUpCall.setTimeInMillis(System.currentTimeMillis());
 
@@ -194,6 +194,7 @@ public class AddAlarmActivity extends AppCompatActivity implements AdapterView.O
                 globalVariable.setMedName(medName);
                 globalVariable.setMedQuan(medQuan);
 
+                Log.e("code when set alarm", String.valueOf(globalVariable.getSelectCode()));
                 pendingIntent = PendingIntent.getBroadcast(AddAlarmActivity.this, globalVariable.getSelectCode(), intent, pendingIntent.FLAG_UPDATE_CURRENT);
 
                 if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
@@ -222,6 +223,7 @@ public class AddAlarmActivity extends AppCompatActivity implements AdapterView.O
                     globalVariable.setSelectCode(selectNum);
 
                     if(globalVariable.getCountCode() < 1){
+                        globalVariable.setSelectCode(0);
 
                     }else {
                         globalVariable.setSelectCode(globalVariable.getCountCode());
@@ -232,22 +234,23 @@ public class AddAlarmActivity extends AppCompatActivity implements AdapterView.O
                         list4.add("Add More Alarm");
                         globalVariable.setCodeList(list4);
                         globalVariable.setCountCode(globalVariable.getCountCode()-1);
-                        pendingIntent = PendingIntent.getBroadcast(AddAlarmActivity.this, globalVariable.getSelectCode(), intent, pendingIntent.FLAG_UPDATE_CURRENT);
+
                     }
 
+                    globalVariable.setAlarmStatus("Alarm off");
+                    alarmStatus.setText("Alarm off");
+                    Log.e("code when cancel alarm", String.valueOf(globalVariable.getSelectCode()));
+                    pendingIntent = PendingIntent.getBroadcast(AddAlarmActivity.this, globalVariable.getSelectCode(), intent, pendingIntent.FLAG_UPDATE_CURRENT);
+                    alarmManager.cancel(pendingIntent);
+
+                    intent.putExtra("extra", "alarm off");
+
+                    sendBroadcast(intent);
+
+
+                    //setContentView(R.layout.activity_add_alarm);
+
                 }
-
-
-                globalVariable.setAlarmStatus("Alarm off");
-                alarmStatus.setText("Alarm off");
-                alarmManager.cancel(pendingIntent);
-
-                intent.putExtra("extra", "alarm off");
-
-                sendBroadcast(intent);
-
-
-                //setContentView(R.layout.activity_add_alarm);
 
             }
         });
