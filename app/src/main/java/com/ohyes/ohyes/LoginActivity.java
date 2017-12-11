@@ -53,6 +53,7 @@ public class LoginActivity extends AppCompatActivity {
                     globalVariable.setUserid("adminOffline");
                     Intent intent = new Intent(LoginActivity.this, ProfileActivity.class);
                     LoginActivity.this.startActivity(intent);
+                    finish();
                 }
                 else {
 
@@ -73,6 +74,7 @@ public class LoginActivity extends AppCompatActivity {
                                     globalVariable.setUserid(username);
 
                                     LoginActivity.this.startActivity(intent);
+                                    finish();
 
                                 } else {
                                     AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);

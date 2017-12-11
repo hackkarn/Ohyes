@@ -124,6 +124,7 @@ public class AddAlarmActivity extends AppCompatActivity implements AdapterView.O
                     Intent intent = new Intent(AddAlarmActivity.this, SettingActivity.class);
                     AddAlarmActivity.this.startActivity(intent);
                 }
+                finish();
                 return true;
             }
         });

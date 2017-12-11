@@ -75,7 +75,9 @@ public class ProfileActivity extends AppCompatActivity {
                     Intent intent = new Intent(ProfileActivity.this, SettingActivity.class);
                     ProfileActivity.this.startActivity(intent);
                 }
+                finish();
                 return true;
+
             }
         });
 

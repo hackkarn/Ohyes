@@ -115,6 +115,7 @@ public class SettingActivity extends AppCompatActivity {
                     Intent intent = new Intent(SettingActivity.this, SettingActivity.class);
                     SettingActivity.this.startActivity(intent);
                 }
+                finish();
                 return true;
             }
         });
