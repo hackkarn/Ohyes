@@ -45,68 +45,129 @@
         tools:ignore="MissingConstraints"
         android:layout_width="0dp" />
 
-    <EditText
-        android:id="@+id/etSNameMed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="18dp"
-        android:ems="10"
-        android:hint="Insert medicine name"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.196"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/header_layout" />
 
 
-    <Button
-        android:id="@+id/bAddMed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:text="ADD"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.542"
-        app:layout_constraintStart_toEndOf="@+id/etSNameMed"
-        app:layout_constraintTop_toBottomOf="@+id/header_layout" />
+    <RelativeLayout
+        android:id="@+id/layout1"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/header_layout" >
 
-    <Spinner
-        android:id="@+id/spinnerChoose"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etSNameMed" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/etSNameMed"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/etSNameMed"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"
+            android:layout_marginStart="10dp"
+            android:text="Add medicine name" />
 
-    <Button
-        android:id="@+id/bTest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:text="Test"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.182"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerChoose" />
+        <EditText
+            android:id="@+id/etSNameMed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/bAddMed"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="26dp"
+            android:layout_marginStart="26dp"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Insert medicine name"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.258"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/bChoose"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:text="Choose"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.753"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerChoose" />
+
+        <Button
+            android:id="@+id/bAddMed"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/etSNameMed"
+            android:layout_toRightOf="@+id/etSNameMed"
+            android:text="ADD" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="176dp"
+        app:layout_constraintTop_toBottomOf="@+id/layout1">
+
+        <TextView
+            android:id="@+id/textSound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/spinnerChoose"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/spinnerChoose"
+            android:layout_marginTop="28dp"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"
+            android:text="Change Alarm Sound"
+
+            tools:layout_editor_absoluteX="28dp" />
+
+        <Spinner
+            android:id="@+id/spinnerChoose"
+            android:layout_width="283dp"
+            android:layout_height="23dp"
+            android:layout_below="@+id/textSound"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.508"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textSound"
+            tools:layout_editor_absoluteY="208dp" />
+
+        <Button
+            android:id="@+id/bTest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/textSound"
+            android:layout_alignParentBottom="true"
+            android:layout_alignRight="@+id/textSound"
+            android:layout_marginEnd="11dp"
+            android:layout_marginRight="11dp"
+            android:background="@color/colorAccent"
+            android:text="Test"
+            android:textColor="#ffffffff"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.265"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinnerChoose" />
+
+        <Button
+            android:id="@+id/bChoose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/bTest"
+            android:layout_alignBottom="@+id/bTest"
+            android:layout_alignEnd="@+id/spinnerChoose"
+            android:layout_alignRight="@+id/spinnerChoose"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
+            android:background="@color/colorAccent"
+            android:text="Choose"
+            android:textColor="#ffffffff"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.789"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinnerChoose" />
+
+
+    </RelativeLayout>
+
+<!--<<<<<<< Updated upstream-->
+=======
+>>>>>>> master
+>>>>>>> Stashed changes
 </android.support.constraint.ConstraintLayout>
