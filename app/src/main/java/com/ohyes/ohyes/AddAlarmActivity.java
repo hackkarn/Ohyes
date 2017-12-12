@@ -369,15 +369,12 @@ public class AddAlarmActivity extends AppCompatActivity implements AdapterView.O
                         globalMedQuan.add("A");
                         globalVariable.setMedQuan(globalMedQuan);
 
-                        alarmStatus.setText("Alarm off");
 
                     }else if(globalVariable.getSelectCode()==0){
 
                         globalList3 = globalVariable.getAlarmStatus();
                         globalList3.set(0, "Alarm off");
                         globalVariable.setAlarmStatus(globalList3);
-                        alarmStatus.setText("Alarm off");
-
                     }else {
                         globalVariable.setCountCode(globalVariable.getCountCode()-1);
 
@@ -409,10 +406,9 @@ public class AddAlarmActivity extends AppCompatActivity implements AdapterView.O
                         globalMedQuan.remove(globalVariable.getSelectCode());
                         globalVariable.setMedQuan(globalMedQuan);
 
-                        alarmStatus.setText(globalVariable.getAlarmStatus().get(0));
                     }
 
-
+                    alarmStatus.setText("Alarm number " + String.valueOf(globalVariable.getSelectCode()+1) + " set to off");
                     Log.e("code when cancel alarm", String.valueOf(globalVariable.getSelectCode()));
                     pendingIntent = PendingIntent.getBroadcast(AddAlarmActivity.this, globalVariable.getSelectCode(), intent, pendingIntent.FLAG_UPDATE_CURRENT);
                     alarmManager.cancel(pendingIntent);
