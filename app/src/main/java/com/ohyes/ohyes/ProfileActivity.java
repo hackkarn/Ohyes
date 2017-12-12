@@ -33,7 +33,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         final TextView etPName = (TextView) findViewById(R.id.etPName);
         final TextView etPUsername = (TextView) findViewById(R.id.etPUsername);
-        final Button bLogout = (Button) findViewById(R.id.bLogout);
+        
 
         TextView cardText1 = (TextView) findViewById(R.id.cardText1);
         ImageView cardImage1 = (ImageView) findViewById(R.id.cardImage1);
@@ -137,12 +137,6 @@ public class ProfileActivity extends AppCompatActivity {
         etPName.setText(name);
         etPUsername.setText(username);
 
-        bLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);
-                ProfileActivity.this.startActivity(intent);
-            }
-        });
+
     }
 }

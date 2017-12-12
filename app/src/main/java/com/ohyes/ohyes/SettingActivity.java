@@ -33,6 +33,7 @@ public class SettingActivity extends AppCompatActivity {
         final GlobalClass globalVariable = (GlobalClass) getApplicationContext();
 
         final Spinner sChoose = (Spinner) findViewById(R.id.spinnerChoose);
+        final Button bLogout = (Button) findViewById(R.id.bLogout);
 
         ArrayList<String> list = new ArrayList<>();
         list.add("1 Rock Style");
@@ -98,6 +99,13 @@ public class SettingActivity extends AppCompatActivity {
             }
         });
 
+        bLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SettingActivity.this, LoginActivity.class);
+                SettingActivity.this.startActivity(intent);
+            }
+        });
 
 
 
