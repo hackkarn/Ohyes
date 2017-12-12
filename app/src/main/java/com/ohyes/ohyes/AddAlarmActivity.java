@@ -76,18 +76,21 @@ public class AddAlarmActivity extends AppCompatActivity implements AdapterView.O
             list0 = globalVariable.getCodeList();
         }
 
-        if(globalVariable.getAlarmStatus()==null){
-            text1 = null;
-        }else {
-            text1 = globalVariable.getAlarmStatus().get(globalVariable.getSelectCode());
-        }
 
         //if(text1==null || text1.equals("Alarm off")){
 
         //    alarmStatus.setText("Alarm off");
         //}else {
-            alarmStatus.setText(globalVariable.getAlarmStatus().get(globalVariable.getSelectCode()));
+            //alarmStatus.setText(globalVariable.getAlarmStatus().get(globalVariable.getSelectCode()));
         //}
+        if(globalVariable.alarmStatus.size()<=globalVariable.getSelectCode()){
+            alarmStatus.setText(globalVariable.getAlarmStatus().get(0));
+        }else if(globalVariable.alarmStatus.get(globalVariable.getSelectCode()).equals("0") || globalVariable.alarmStatus.get(globalVariable.getSelectCode()).equals("Alarm off") ){
+            alarmStatus.setText(globalVariable.getAlarmStatus().get(0));
+        }else{
+            alarmStatus.setText(globalVariable.getAlarmStatus().get(globalVariable.getSelectCode()));
+        }
+
 
         // set drop down menu for medicine name
         if(globalVariable.medlist == null){
@@ -264,7 +267,7 @@ public class AddAlarmActivity extends AppCompatActivity implements AdapterView.O
                 globalVariable.setTimeMin(globalMinute);
 
                 globalList3 = globalVariable.getAlarmStatus();
-                globalList3.set(globalVariable.getSelectCode(), "Alarm set to  " + hourString + ":" + minuteString);
+                globalList3.set(globalVariable.getCountCode(), "Alarm set to  " + hourString + ":" + minuteString);
                 globalVariable.setAlarmStatus(globalList3);
 
                 alarmStatus.setText(globalVariable.getAlarmStatus().get(globalVariable.getSelectCode()));
@@ -315,6 +318,34 @@ public class AddAlarmActivity extends AppCompatActivity implements AdapterView.O
 
                     if(globalVariable.getCountCode() < 1){
 
+                        globalHour = new ArrayList<>();
+                        globalHour.add("0");
+                        globalVariable.setTimeHour(globalHour);
+
+                        globalMinute = new ArrayList<>();
+                        globalMinute.add("0");
+                        globalVariable.setTimeMin(globalMinute);
+
+                        globalList3 = new ArrayList<>();
+                        globalList3.add("Alarm off");
+                        globalVariable.setAlarmStatus(globalList3);
+
+                        ArrayList<String> globalMedName = new ArrayList<>();
+                        globalMedName.add("A");
+                        globalVariable.setMedName(globalMedName);
+
+                        ArrayList<String> globalMedQuan = new ArrayList<>();
+                        globalMedQuan.add("A");
+                        globalVariable.setMedQuan(globalMedQuan);
+
+                        alarmStatus.setText("Alarm off");
+
+                    }else if(globalVariable.getSelectCode()==0){
+
+                        globalList3 = globalVariable.getAlarmStatus();
+                        globalList3.set(0, "Alarm off");
+                        globalVariable.setAlarmStatus(globalList3);
+                        alarmStatus.setText("Alarm off");
 
                     }else {
                         globalVariable.setCountCode(globalVariable.getCountCode()-1);
@@ -325,23 +356,32 @@ public class AddAlarmActivity extends AppCompatActivity implements AdapterView.O
                         list4.remove(globalVariable.getCountCode()+1);
                         list4.add("Add More Alarm");
                         globalVariable.setCodeList(list4);
-                    }
-                    if(globalVariable.getCountCode()>0){
-                        ArrayList<String> listHourcheck = globalVariable.getTimeHour();
-                        listHourcheck.remove(globalVariable.getCountCode()+1);
-                        globalVariable.setTimeHour(listHourcheck);
 
-                        ArrayList<String> listMinCheck = globalVariable.getTimeMin();
-                        listMinCheck.remove(globalVariable.getCountCode()+1);
-                        globalVariable.setTimeMin(listMinCheck);
+                        //aaaaa
+                        globalHour = globalVariable.getTimeHour();
+                        globalHour.remove(globalVariable.getSelectCode());
+                        globalVariable.setTimeHour(globalHour);
 
+                        globalMinute = globalVariable.getTimeMin();
+                        globalMinute.remove(globalVariable.getSelectCode());
+                        globalVariable.setTimeMin(globalMinute);
 
                         globalList3 = globalVariable.getAlarmStatus();
                         globalList3.remove(globalVariable.getSelectCode());
                         globalVariable.setAlarmStatus(globalList3);
+
+                        ArrayList<String> globalMedName = globalVariable.getMedName();
+                        globalMedName.remove(globalVariable.getSelectCode());
+                        globalVariable.setMedName(globalMedName);
+
+                        ArrayList<String> globalMedQuan = globalVariable.getMedQuan();
+                        globalMedQuan.remove(globalVariable.getSelectCode());
+                        globalVariable.setMedQuan(globalMedQuan);
+
+                        alarmStatus.setText(globalVariable.getAlarmStatus().get(0));
                     }
 
-                    alarmStatus.setText("Alarm off");
+
                     Log.e("code when cancel alarm", String.valueOf(globalVariable.getSelectCode()));
                     pendingIntent = PendingIntent.getBroadcast(AddAlarmActivity.this, globalVariable.getSelectCode(), intent, pendingIntent.FLAG_UPDATE_CURRENT);
                     alarmManager.cancel(pendingIntent);

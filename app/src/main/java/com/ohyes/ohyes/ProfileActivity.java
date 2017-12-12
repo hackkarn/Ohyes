@@ -39,12 +39,11 @@ public class ProfileActivity extends AppCompatActivity {
 
         final GlobalClass globalVariable = (GlobalClass) getApplicationContext();
 
-        if (globalVariable.alarmStatus.get(globalVariable.getSelectCode()).equals("0") || globalVariable.alarmStatus.get(globalVariable.getSelectCode()).equals("Alarm off")){
+        if (globalVariable.alarmStatus.get(0).equals("0") || globalVariable.alarmStatus.get(0).equals("Alarm off")){
             cardText1.setText("Alarm is not set");
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 cardImage1.setImageDrawable(getDrawable(R.drawable.clockicon));
             }
-
 
         }
         else {
@@ -52,10 +51,10 @@ public class ProfileActivity extends AppCompatActivity {
             //min.setText(globalVariable.getTimeMin());
             //nameMed.setText(globalVariable.getMedName());
             //medQuantity.setText(globalVariable.getMedQuan());
-            String hour = globalVariable.getTimeHour().get(globalVariable.getSelectCode());
-            String min = globalVariable.getTimeMin().get(globalVariable.getSelectCode());
-            String nameMed = globalVariable.getMedName().get(globalVariable.getSelectCode());
-            String medQuantity = globalVariable.getMedQuan().get(globalVariable.getSelectCode());
+            String hour = globalVariable.getTimeHour().get(0);
+            String min = globalVariable.getTimeMin().get(0);
+            String nameMed = globalVariable.getMedName().get(0);
+            String medQuantity = globalVariable.getMedQuan().get(0);
 
             cardText1.setText(hour+":"+min+" take " + nameMed + " for " + medQuantity + " pill");
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
