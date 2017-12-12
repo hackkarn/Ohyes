@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,12 +17,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
 public class ProfileActivity extends AppCompatActivity {
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,8 +54,8 @@ public class ProfileActivity extends AppCompatActivity {
             //medQuantity.setText(globalVariable.getMedQuan());
             String hour = globalVariable.getTimeHour().get(globalVariable.getSelectCode());
             String min = globalVariable.getTimeMin().get(globalVariable.getSelectCode());
-            String nameMed = globalVariable.getMedName();
-            String medQuantity = globalVariable.getMedQuan();
+            String nameMed = globalVariable.getMedName().get(globalVariable.getSelectCode());
+            String medQuantity = globalVariable.getMedQuan().get(globalVariable.getSelectCode());
 
             cardText1.setText(hour+":"+min+" take " + nameMed + " for " + medQuantity + " pill");
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -60,6 +63,47 @@ public class ProfileActivity extends AppCompatActivity {
             }
 
         }
+
+        for(int i= 0 ; i < globalVariable.getCountCode(); i++){
+            CardView cardView = new CardView(ProfileActivity.this);
+            cardView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+
+            LinearLayout parent = new LinearLayout(ProfileActivity.this);
+            parent.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 70));
+            parent.setOrientation(LinearLayout.HORIZONTAL);
+            parent.setBackgroundResource(R.drawable.card_edge);
+
+            cardView.addView(parent);
+
+//children of parent linearlayout
+
+            ImageView iv = new ImageView(ProfileActivity.this);
+            iv.setLayoutParams(new LinearLayout.LayoutParams(142, LinearLayout.LayoutParams.MATCH_PARENT));
+            iv.setImageDrawable(getDrawable(R.drawable.clockicon));
+
+            LinearLayout layout2 = new LinearLayout(ProfileActivity.this);
+            layout2.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+
+            parent.removeAllViews();
+            parent.addView(iv);
+            parent.addView(layout2);
+
+//children of layout2 LinearLayout
+
+            TextView tv1 = new TextView(ProfileActivity.this);
+            TextView tv2 = new TextView(ProfileActivity.this);
+            String hour1 = globalVariable.getTimeHour().get(i+1);
+            String min1 = globalVariable.getTimeMin().get(i+1);
+            String nameMed1 = globalVariable.getMedName().get(i+1);
+            String medQuantity1 = globalVariable.getMedQuan().get(i+1);
+            tv1.setText(hour1+":"+min1+" take " + nameMed1 + " for " + medQuantity1 + " pill");
+            layout2.addView(tv1);
+            layout2.addView(tv2);
+
+            LinearLayout viewLayout = (LinearLayout) findViewById(R.id.viewLayout);
+            viewLayout.addView(cardView);
+        }
+
 
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigation);

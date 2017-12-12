@@ -157,7 +157,6 @@
                         android:layout_alignParentTop="true"
                         android:layout_gravity="top"
                         android:layout_weight="1"
-
                         android:scaleType="fitCenter" />
 
                     <TextView

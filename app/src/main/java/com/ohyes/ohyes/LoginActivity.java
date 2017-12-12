@@ -50,7 +50,9 @@ public class LoginActivity extends AppCompatActivity {
                 final String username = etUsername.getText().toString();
                 final String password = etPassword.getText().toString();
                 ArrayList<String> globalList = new ArrayList<>();
-                ArrayList<String> globalList2 = new ArrayList<>();
+                ArrayList<String> globalList2;
+                ArrayList<String> globalList3;
+                ArrayList<String> globalList4;
                 globalList.add(0, "Alarm off");
                 globalVariable.setAlarmStatus(globalList);
                 globalList= new ArrayList<>();
@@ -59,6 +61,12 @@ public class LoginActivity extends AppCompatActivity {
                 globalList2= new ArrayList<>();
                 globalList2.add(0, "0");
                 globalVariable.setTimeMin(globalList2);
+                globalList3= new ArrayList<>();
+                globalList3.add(0, "0");
+                globalVariable.setMedName(globalList3);
+                globalList4= new ArrayList<>();
+                globalList4.add(0, "0");
+                globalVariable.setMedQuan(globalList4);
 
                 if (username.equals("") && password.equals("")){
                     globalVariable.setUsername("adminTest");

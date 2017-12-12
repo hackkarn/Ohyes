@@ -16,8 +16,8 @@ public class GlobalClass extends Application{
     public ArrayList<String> alarmStatus;
     public int count;
     public ArrayList<String> medlist;
-    public String medName;
-    public String medQuan;
+    public ArrayList<String> medName;
+    public ArrayList<String> medQuan;
     public int songId;
     public int selectCode;
     public int countCode;
@@ -79,19 +79,19 @@ public class GlobalClass extends Application{
         this.medlist = medlist;
     }
 
-    public String getMedName(){
+    public ArrayList<String> getMedName(){
         return medName;
     }
 
-    public void setMedName(String medName){
+    public void setMedName(ArrayList<String> medName){
         this.medName = medName;
     }
 
-    public String getMedQuan(){
+    public ArrayList<String> getMedQuan(){
         return medQuan;
     }
 
-    public void setMedQuan(String medQuan){
+    public void setMedQuan(ArrayList<String> medQuan){
         this.medQuan = medQuan;
     }
 
