@@ -46,14 +46,18 @@
         android:layout_width="0dp" />
 
 
-
     <RelativeLayout
         android:id="@+id/layout1"
-        android:layout_width="match_parent"
+        android:layout_width="325dp"
         android:layout_height="100dp"
-        android:layout_marginTop="20dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/card_edge"
+        android:gravity="center"
         app:layout_constraintTop_toBottomOf="@+id/header_layout"
-        android:background="@drawable/card_edge">
+
+        tools:layout_editor_absoluteX="18dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -62,10 +66,10 @@
             android:layout_alignParentTop="true"
             android:layout_alignStart="@+id/etSNameMed"
             android:layout_marginLeft="10dp"
-            android:textColor="@color/colorAccent"
-            android:textStyle="bold"
             android:layout_marginStart="10dp"
-            android:text="Add medicine name" />
+            android:text="Add medicine name"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/etSNameMed"
@@ -98,10 +102,12 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_width="match_parent"
+        android:layout_width="325dp"
         android:layout_height="176dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/card_edge"
         app:layout_constraintTop_toBottomOf="@+id/layout1"
-        android:background="@drawable/card_edge">
+        tools:layout_editor_absoluteX="18dp">
 
         <TextView
             android:id="@+id/textSound"
@@ -111,9 +117,9 @@
             android:layout_alignParentTop="true"
             android:layout_alignStart="@+id/spinnerChoose"
             android:layout_marginTop="20dp"
+            android:text="Change Alarm Sound"
             android:textColor="@color/colorAccent"
             android:textStyle="bold"
-            android:text="Change Alarm Sound"
 
             tools:layout_editor_absoluteX="28dp" />
 
@@ -133,13 +139,14 @@
         <Button
             android:id="@+id/bTest"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_alignEnd="@+id/textSound"
             android:layout_alignParentBottom="true"
             android:layout_alignRight="@+id/textSound"
-            android:layout_marginEnd="11dp"
-            android:layout_marginRight="11dp"
+            android:layout_marginEnd="13dp"
+            android:layout_marginRight="13dp"
             android:background="@color/colorAccent"
+
             android:text="Test"
             android:textColor="#ffffffff"
             app:layout_constraintEnd_toEndOf="parent"
