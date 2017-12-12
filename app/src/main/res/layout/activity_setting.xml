@@ -48,16 +48,15 @@
 
     <RelativeLayout
         android:id="@+id/layout1"
-        android:layout_width="325dp"
+        android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/card_edge"
         android:gravity="center"
         app:layout_constraintTop_toBottomOf="@+id/header_layout"
-
-        tools:layout_editor_absoluteX="18dp">
+        >
 
         <TextView
             android:layout_width="wrap_content"
@@ -102,12 +101,13 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_width="325dp"
+        android:layout_width="match_parent"
         android:layout_height="176dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/card_edge"
         app:layout_constraintTop_toBottomOf="@+id/layout1"
-        tools:layout_editor_absoluteX="18dp">
+        tools:layout_editor_absoluteX="18dp"
+        android:gravity="center">
 
         <TextView
             android:id="@+id/textSound"

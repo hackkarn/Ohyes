@@ -58,7 +58,7 @@ public class SettingActivity extends AppCompatActivity {
                 list.add(text);
                 globalVariable.setMedlist(list);
 
-                medName.setText("Success");
+                medName.setText("Add success");
 
             }
         });
