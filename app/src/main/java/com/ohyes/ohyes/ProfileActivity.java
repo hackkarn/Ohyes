@@ -31,8 +31,8 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        final EditText etPName = (EditText) findViewById(R.id.etPName);
-        final EditText etPUsername = (EditText) findViewById(R.id.etPUsername);
+        final TextView etPName = (TextView) findViewById(R.id.etPName);
+        final TextView etPUsername = (TextView) findViewById(R.id.etPUsername);
         final Button bLogout = (Button) findViewById(R.id.bLogout);
 
         TextView cardText1 = (TextView) findViewById(R.id.cardText1);
