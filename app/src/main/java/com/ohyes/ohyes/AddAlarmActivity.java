@@ -83,13 +83,7 @@ public class AddAlarmActivity extends AppCompatActivity implements AdapterView.O
         //}else {
             //alarmStatus.setText(globalVariable.getAlarmStatus().get(globalVariable.getSelectCode()));
         //}
-        if(globalVariable.alarmStatus.size()<=globalVariable.getSelectCode()){
-            alarmStatus.setText(globalVariable.getAlarmStatus().get(0));
-        }else if(globalVariable.alarmStatus.get(globalVariable.getSelectCode()).equals("0") || globalVariable.alarmStatus.get(globalVariable.getSelectCode()).equals("Alarm off") ){
-            alarmStatus.setText(globalVariable.getAlarmStatus().get(0));
-        }else{
-            alarmStatus.setText(globalVariable.getAlarmStatus().get(globalVariable.getSelectCode()));
-        }
+
 
 
         // set drop down menu for medicine name
@@ -147,8 +141,9 @@ public class AddAlarmActivity extends AppCompatActivity implements AdapterView.O
             public void onClick(View v) {
                 int hour = 0;
                 int minute = 0;
+                String checkSelect = spinnerSelectCode.getSelectedItem().toString();
 
-                if(spinnerSelectCode.getSelectedItem().equals("Add More Alarm")){
+                if(checkSelect.equals("Add More Alarm")){
                     globalVariable.setCountCode(globalVariable.getCountCode()+1);
                     globalVariable.setSelectCode(globalVariable.getCountCode()-1);
                     ArrayList<String> list4;
@@ -255,37 +250,73 @@ public class AddAlarmActivity extends AppCompatActivity implements AdapterView.O
 
                 }
 
-                globalHour = new ArrayList<>();
-                globalHour = globalVariable.getTimeHour();
-                globalHour.set(globalVariable.getCountCode(), hourString);
-                globalVariable.setTimeHour(globalHour);
+                if(checkSelect.equals("Add More Alarm")) {
+                    globalHour = new ArrayList<>();
+                    globalHour = globalVariable.getTimeHour();
+                    globalHour.set(globalVariable.getCountCode(), hourString);
+                    globalVariable.setTimeHour(globalHour);
 
 
-                globalMinute = new ArrayList<>();
-                globalMinute = globalVariable.getTimeMin();
-                globalMinute.set(globalVariable.getCountCode(), minuteString);
-                globalVariable.setTimeMin(globalMinute);
+                    globalMinute = new ArrayList<>();
+                    globalMinute = globalVariable.getTimeMin();
+                    globalMinute.set(globalVariable.getCountCode(), minuteString);
+                    globalVariable.setTimeMin(globalMinute);
 
-                globalList3 = globalVariable.getAlarmStatus();
-                globalList3.set(globalVariable.getCountCode(), "Alarm set to  " + hourString + ":" + minuteString);
-                globalVariable.setAlarmStatus(globalList3);
+                    globalList3 = globalVariable.getAlarmStatus();
+                    globalList3.set(globalVariable.getCountCode(), "Alarm set to  " + hourString + ":" + minuteString);
+                    globalVariable.setAlarmStatus(globalList3);
 
-                alarmStatus.setText(globalVariable.getAlarmStatus().get(globalVariable.getSelectCode()));
+                    alarmStatus.setText(globalVariable.getAlarmStatus().get(globalVariable.getSelectCode()));
 
-                intent.putExtra("extra", "alarm on");
+                    intent.putExtra("extra", "alarm on");
 
-                String medName = spinnerSet.getSelectedItem().toString();
-                String medQuan = spinnerQuantity.getSelectedItem().toString();
+                    String medName = spinnerSet.getSelectedItem().toString();
+                    String medQuan = spinnerQuantity.getSelectedItem().toString();
 
-                ArrayList<String> globalMedName = new ArrayList<>();
-                globalMedName = globalVariable.getMedName();
-                globalMedName.set(globalVariable.getCountCode(), medName);
-                globalVariable.setMedName(globalMedName);
+                    ArrayList<String> globalMedName = new ArrayList<>();
+                    globalMedName = globalVariable.getMedName();
+                    globalMedName.set(globalVariable.getCountCode(), medName);
+                    globalVariable.setMedName(globalMedName);
 
-                ArrayList<String> globalMedQuan = new ArrayList<>();
-                globalMedQuan = globalVariable.getMedQuan();
-                globalMedQuan.set(globalVariable.getCountCode(), medQuan);
-                globalVariable.setMedQuan(globalMedQuan);
+                    ArrayList<String> globalMedQuan = new ArrayList<>();
+                    globalMedQuan = globalVariable.getMedQuan();
+                    globalMedQuan.set(globalVariable.getCountCode(), medQuan);
+                    globalVariable.setMedQuan(globalMedQuan);
+                    Log.e("What is this", globalVariable.alarmStatus.toString() + " " + spinnerSelectCode.getSelectedItem().toString());
+                    alarmStatus.setText(globalVariable.getAlarmStatus().get(globalVariable.getCountCode()));
+                }else{
+                    globalHour = new ArrayList<>();
+                    globalHour = globalVariable.getTimeHour();
+                    globalHour.set(globalVariable.getSelectCode(), hourString);
+                    globalVariable.setTimeHour(globalHour);
+
+
+                    globalMinute = new ArrayList<>();
+                    globalMinute = globalVariable.getTimeMin();
+                    globalMinute.set(globalVariable.getSelectCode(), minuteString);
+                    globalVariable.setTimeMin(globalMinute);
+
+                    globalList3 = globalVariable.getAlarmStatus();
+                    globalList3.set(globalVariable.getSelectCode(), "Alarm set to  " + hourString + ":" + minuteString);
+                    globalVariable.setAlarmStatus(globalList3);
+
+                    intent.putExtra("extra", "alarm on");
+
+                    String medName = spinnerSet.getSelectedItem().toString();
+                    String medQuan = spinnerQuantity.getSelectedItem().toString();
+
+                    ArrayList<String> globalMedName = new ArrayList<>();
+                    globalMedName = globalVariable.getMedName();
+                    globalMedName.set(globalVariable.getSelectCode(), medName);
+                    globalVariable.setMedName(globalMedName);
+
+                    ArrayList<String> globalMedQuan = new ArrayList<>();
+                    globalMedQuan = globalVariable.getMedQuan();
+                    globalMedQuan.set(globalVariable.getSelectCode(), medQuan);
+                    globalVariable.setMedQuan(globalMedQuan);
+                    Log.e("What is this2", globalVariable.alarmStatus.toString() + " " + spinnerSelectCode.getSelectedItem().toString());
+                    alarmStatus.setText(globalVariable.getAlarmStatus().get(globalVariable.getSelectCode()));
+                }
 
                 Log.e("code when set alarm", String.valueOf(globalVariable.getSelectCode()));
                 pendingIntent = PendingIntent.getBroadcast(AddAlarmActivity.this, globalVariable.getSelectCode(), intent, pendingIntent.FLAG_UPDATE_CURRENT);
