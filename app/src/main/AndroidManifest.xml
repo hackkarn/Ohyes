@@ -25,9 +25,6 @@
         <activity
             android:name=".ProfileActivity"
             android:label="Profile" />
-        <activity
-            android:name=".HomeActivity"
-            android:label="Home"></activity>
         <activity android:name=".AddAlarmActivity"></activity>
 
         <receiver android:name=".AlarmReceiver" />

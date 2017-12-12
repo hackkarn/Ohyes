@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,7 +69,7 @@ public class ProfileActivity extends AppCompatActivity {
             cardView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
 
             LinearLayout parent = new LinearLayout(ProfileActivity.this);
-            parent.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 70));
+            parent.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 110));
             parent.setOrientation(LinearLayout.HORIZONTAL);
             parent.setBackgroundResource(R.drawable.card_edge);
 
@@ -77,7 +78,7 @@ public class ProfileActivity extends AppCompatActivity {
 //children of parent linearlayout
 
             ImageView iv = new ImageView(ProfileActivity.this);
-            iv.setLayoutParams(new LinearLayout.LayoutParams(142, LinearLayout.LayoutParams.MATCH_PARENT));
+            iv.setLayoutParams(new LinearLayout.LayoutParams(150, LinearLayout.LayoutParams.MATCH_PARENT));
             iv.setImageDrawable(getDrawable(R.drawable.clockicon));
 
             LinearLayout layout2 = new LinearLayout(ProfileActivity.this);
@@ -90,14 +91,16 @@ public class ProfileActivity extends AppCompatActivity {
 //children of layout2 LinearLayout
 
             TextView tv1 = new TextView(ProfileActivity.this);
-            TextView tv2 = new TextView(ProfileActivity.this);
+            tv1.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+            tv1.setTextSize(20f);
+            tv1.setGravity(Gravity.CENTER_HORIZONTAL);
             String hour1 = globalVariable.getTimeHour().get(i+1);
             String min1 = globalVariable.getTimeMin().get(i+1);
             String nameMed1 = globalVariable.getMedName().get(i+1);
             String medQuantity1 = globalVariable.getMedQuan().get(i+1);
             tv1.setText(hour1+":"+min1+" take " + nameMed1 + " for " + medQuantity1 + " pill");
+            layout2.removeAllViews();
             layout2.addView(tv1);
-            layout2.addView(tv2);
 
             LinearLayout viewLayout = (LinearLayout) findViewById(R.id.viewLayout);
             viewLayout.addView(cardView);
